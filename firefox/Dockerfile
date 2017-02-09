@@ -1,4 +1,4 @@
-FROM diko316/alnode:latest
+FROM diko316/alnode:v2.0
 
 ADD ./bin /opt/tools/webtest
 
