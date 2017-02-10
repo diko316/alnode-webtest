@@ -1,4 +1,4 @@
-FROM diko316/alnode:latest
+FROM diko316/alnode:v2.0
 
 ENV CHROME_BIN=/usr/bin/chromium-browser
 
@@ -10,14 +10,18 @@ RUN auto-build \
             coreutils \
             xvfb \
             dbus \
-            fontconfig \
-            ttf-freefont \
-            firefox-esr \
             udev \
-            mesa-gl \
-            x11vnc \
             libexif \
-			chromium \
-            chromium-chromedriver && \
+			chromium  && \
     chmod +x /opt/tools/webtest/xvfb-run.sh && \
-    ln -s /opt/tools/webtest/xvfb-run.sh /usr/local/bin/xvfb-run
+    ln -s /opt/tools/webtest/xvfb-run.sh /usr/local/bin/xvfb-run && \
+    mkdir -p /home/tester && \
+    ln -s $PROJECT_ROOT /home/tester/app && \
+    addgroup tester && \
+    adduser tester -G tester -h /home/tester -D && \
+    addgroup tester audio && \
+    echo "tester ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
+    chown tester:tester -R $PROJECT_ROOT
+
+USER tester
+WORKDIR /home/tester/app
