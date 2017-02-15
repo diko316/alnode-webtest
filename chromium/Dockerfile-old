@@ -1,0 +1,27 @@
+FROM diko316/alnode:v2.0
+
+ENV CHROME_BIN=/usr/bin/chromium-browser
+
+COPY ./bin /opt/tools/webtest
+
+RUN auto-build \
+        --no-builer \
+		--apk-permanent \
+            coreutils \
+            xvfb \
+            dbus \
+            udev \
+            libexif \
+			chromium  && \
+    chmod +x /opt/tools/webtest/xvfb-run.sh && \
+    ln -s /opt/tools/webtest/xvfb-run.sh /usr/local/bin/xvfb-run && \
+    mkdir -p /home/tester && \
+    ln -s $PROJECT_ROOT /home/tester/app && \
+    addgroup tester && \
+    adduser tester -G tester -h /home/tester -D && \
+    addgroup tester audio && \
+    echo "tester ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
+    chown tester:tester -R /opt/*
+
+USER tester
+WORKDIR /home/tester/app

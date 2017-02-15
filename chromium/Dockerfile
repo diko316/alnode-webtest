@@ -14,14 +14,6 @@ RUN auto-build \
             libexif \
 			chromium  && \
     chmod +x /opt/tools/webtest/xvfb-run.sh && \
-    ln -s /opt/tools/webtest/xvfb-run.sh /usr/local/bin/xvfb-run && \
-    mkdir -p /home/tester && \
-    ln -s $PROJECT_ROOT /home/tester/app && \
-    addgroup tester && \
-    adduser tester -G tester -h /home/tester -D && \
-    addgroup tester audio && \
-    echo "tester ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers && \
-    chown tester:tester -R $PROJECT_ROOT
+    ln -s /opt/tools/webtest/xvfb-run.sh /usr/local/bin/xvfb-chromium
+    
 
-USER tester
-WORKDIR /home/tester/app
