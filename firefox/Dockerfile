@@ -1,6 +1,6 @@
 FROM diko316/alnode:v2.0
 
-ADD ./bin /opt/tools/webtest
+ADD https://raw.githubusercontent.com/diko316/alnode-webtest/master/bin/xvfb-run.sh /opt/tools/webtest/xvfb-run.sh
 
 RUN auto-build \
         --no-builer \
