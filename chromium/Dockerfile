@@ -1,4 +1,4 @@
-FROM diko316/alnode:v2.0
+FROM diko316/alnode:v2.1
 
 ENV CHROME_BIN=/usr/bin/chromium-browser
 
