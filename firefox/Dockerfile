@@ -1,4 +1,4 @@
-FROM diko316/alnode:v2.1
+FROM diko316/alnode:v2.2
 
 ADD https://raw.githubusercontent.com/diko316/alnode-webtest/master/bin/xvfb-run.sh /opt/tools/webtest/xvfb-run.sh
 
