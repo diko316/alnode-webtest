@@ -1,4 +1,4 @@
-FROM diko316/alnode-ng:firefox-v1.3
+FROM diko316/alnode-firefox:firefox-v1.3
 
 COPY . $PROJECT_ROOT
 
